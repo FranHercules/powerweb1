@@ -1,6 +1,7 @@
 import { render } from 'react-dom';
 import './index.css';
 import * as React from 'react';
+import Header from './header/Header';
 import { ScheduleComponent, ViewsDirective, ViewDirective, TimelineViews, Inject, ResourcesDirective, ResourceDirective, Resize, DragAndDrop } from '@syncfusion/ej2-react-schedule';
 
 import { extend, Internationalization, isNullOrUndefined } from '@syncfusion/ej2-base';
@@ -127,5 +128,5 @@ export class TimelineResource extends SampleBase {
             </div>);
     }
 }
-
+render(<Header />, document.getElementById('header'));
 render(<TimelineResource />, document.getElementById('sample'));
