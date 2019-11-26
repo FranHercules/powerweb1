@@ -13,19 +13,20 @@ import * as dataSource from './datasource.json';
 export class TimelineResource extends SampleBase {
     constructor() {
         super(...arguments);
+        
         this.data = extend([], dataSource.roomData, null, true);
         this.instance = new Internationalization();
         this.ownerData = [
-            { text: 'Jammy', id: 1, color: '#ea7a57', capacity: 20, type: 'Conference' },
-            { text: 'Tweety', id: 2, color: '#7fa900', capacity: 7, type: 'Cabin' },
-            { text: 'Nestle', id: 3, color: '#5978ee', capacity: 5, type: 'Cabin' },
-            { text: 'Phoenix', id: 4, color: '#fec200', capacity: 15, type: 'Conference' },
-            { text: 'Mission', id: 5, color: '#df5286', capacity: 25, type: 'Conference' },
-            { text: 'Hangout', id: 6, color: '#00bdae', capacity: 10, type: 'Cabin' },
-            { text: 'Rick Roll', id: 7, color: '#865fcf', capacity: 20, type: 'Conference' },
-            { text: 'Rainbow', id: 8, color: '#1aaa55', capacity: 8, type: 'Cabin' },
-            { text: 'Swarm', id: 9, color: '#df5286', capacity: 30, type: 'Conference' },
-            { text: 'Photogenic', id: 10, color: '#710193', capacity: 25, type: 'Conference' }
+            { text: 'L1', id: 1, color: '#ea7a57', capacity: 20, type: 'Conference' },
+            { text: 'L2', id: 2, color: '#7fa900', capacity: 7, type: 'Cabin' },
+            { text: 'L3', id: 3, color: '#5978ee', capacity: 5, type: 'Cabin' },
+            { text: 'L4', id: 4, color: '#fec200', capacity: 15, type: 'Conference' },
+            { text: 'L5', id: 5, color: '#df5286', capacity: 25, type: 'Conference' },
+            { text: 'L6', id: 6, color: '#00bdae', capacity: 10, type: 'Cabin' },
+            { text: 'L7', id: 7, color: '#865fcf', capacity: 20, type: 'Conference' },
+            { text: 'L8', id: 8, color: '#1aaa55', capacity: 8, type: 'Cabin' },
+            { text: 'CEF', id: 9, color: '#df5286', capacity: 30, type: 'Conference' },
+            { text: 'DOE', id: 10, color: '#710193', capacity: 25, type: 'Conference' }
         ];
     }
     getRoomName(value) {
@@ -83,9 +84,18 @@ export class TimelineResource extends SampleBase {
     onPopupOpen(args) {
         let data = args.data;
         if (args.type === 'QuickInfo' || args.type === 'Editor' || args.type === 'RecurrenceAlert' || args.type === 'DeleteAlert') {
+            console.log(data.Id);
+            console.log(data);
+            console.log(args.type + ' Esto es el type');
+            console.log(args.target);
+            console.log('mimamamemima');
+            //data.element
             let target = (args.type === 'RecurrenceAlert' ||
-                args.type === 'DeleteAlert') ? data.element[0] : args.target;
+                args.type === 'DeleteAlert') ? (data.element) : args.target;
+                console.log(target); 
+                console.log('Hola mundo'); 
             if (!isNullOrUndefined(target) && target.classList.contains('e-work-cells')) {
+                console.log('Hola mundo1');
                 if ((target.classList.contains('e-read-only-cells')) ||
                     (!this.scheduleObj.isSlotAvailable(data))) {
                     args.cancel = true;
@@ -128,5 +138,5 @@ export class TimelineResource extends SampleBase {
             </div>);
     }
 }
-render(<Header />, document.getElementById('header'));
+//render(<Header />, document.getElementById('header'));
 render(<TimelineResource />, document.getElementById('sample'));
