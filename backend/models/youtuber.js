@@ -4,7 +4,7 @@ const mongoose = require('mongoose'),
 var UserSchema = Schema({
     Id: {
         type: Number,
-        unique:true
+        //unique:true
     },
     Subject: String,
     Description: String,

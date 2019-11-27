@@ -13,19 +13,18 @@ import axios from 'axios';
  * schedule room scheduler sample
  */
 export class TimelineResource extends SampleBase {
-
+    
     async componentDidMount(){
-        const res = await axios.get('http://localhost:4000/users/');
-        console.log(res.data);
-
-        
+        const res = await axios.get('http://localhost:4200/users/');
+        this.setState({
+            data: res.data
+        })
     }
 
     constructor() {
         super(...arguments);
-        
-        this.data = extend([], dataSource.roomData, null, true);
-        console.log(this.data);
+        //const res=this.componentDidMount();
+        //this.data = this.testvariable;
         this.instance = new Internationalization();
         this.ownerData = [
             { text: 'L1', id: 1, color: '#ea7a57', capacity: 20, type: 'Conference' },
@@ -39,6 +38,10 @@ export class TimelineResource extends SampleBase {
             { text: 'CEF', id: 9, color: '#df5286', capacity: 30, type: 'Conference' },
             { text: 'DOE', id: 10, color: '#710193', capacity: 25, type: 'Conference' }
         ];
+
+        this.state = {
+            data:[]
+        }
     }
     getRoomName(value) {
         return value.resourceData[value.resource.textField];
@@ -119,6 +122,10 @@ export class TimelineResource extends SampleBase {
         }
     }
     render() {
+        console.log(this.state.data);
+        
+        this.data = extend([], this.state.data, null, true);
+
         return (<div className='schedule-control-section'>
                 <div className='col-lg-12 control-section'>
                     <div className='control-wrapper'>
