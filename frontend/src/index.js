@@ -7,14 +7,25 @@ import { ScheduleComponent, ViewsDirective, ViewDirective, TimelineViews, Inject
 import { extend, Internationalization, isNullOrUndefined } from '@syncfusion/ej2-base';
 import { SampleBase } from './sample-base';
 import * as dataSource from './datasource.json';
+
+import axios from 'axios';
 /**
  * schedule room scheduler sample
  */
 export class TimelineResource extends SampleBase {
+
+    async componentDidMount(){
+        const res = await axios.get('http://localhost:4000/users/');
+        console.log(res.data);
+
+        
+    }
+
     constructor() {
         super(...arguments);
         
         this.data = extend([], dataSource.roomData, null, true);
+        console.log(this.data);
         this.instance = new Internationalization();
         this.ownerData = [
             { text: 'L1', id: 1, color: '#ea7a57', capacity: 20, type: 'Conference' },
