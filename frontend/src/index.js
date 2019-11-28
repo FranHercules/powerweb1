@@ -15,7 +15,7 @@ import axios from 'axios';
 export class TimelineResource extends SampleBase {
     
     async componentDidMount(){
-        const res = await axios.get('http://localhost:4200/users/');
+        const res = await axios.get('https://backendp1.herokuapp.com/users/');
         this.setState({
             data: res.data
         })

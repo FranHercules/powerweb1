@@ -16,7 +16,7 @@ const cors = require('cors');
 // Conect to database
 const URI = process.env.MONGO_URI
     ? process.env.MONGO_URI
-    : 'mongodb://localhost/prueba11';
+    : 'mongodb+srv://root:root@cluster0-kewsc.mongodb.net/calendario?retryWrites=true&w=majority';
 mongoose.connect(URI , {
   useCreateIndex: true,
   useNewUrlParser: true,
